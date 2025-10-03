@@ -1,7 +1,7 @@
 import socket
 import threading
 import os
-#désolé pour tout les if et elif 
+
 
 # Pseudos réservés (interdits) premier test pour savoir si les pseudos déja pris renvoyait bien une erreur 
 ps = {"admin", "enzo", "coucou"}
@@ -42,7 +42,7 @@ def handle_client(client_socket):
         else:
             #sinon on stocke donc le nouveau socket du client dans la premiere liste socket pour pouvoir le récuperer plus tard pour lui adresser des messages mp ou all
             NameSocket[pseudo] = client_socket
-            #liste de test mais j'ai trop peur de l'enlever et tou faire planter mais elle ne sert a rien
+            #on ajoute les pseudos a la liste des pseudos déja pris 
             ps.add(pseudo)
             if not present :
                 #on donnera le role d'admin seulement au premier arrivé dans la salle
@@ -174,3 +174,4 @@ while True:
     client_socket, client_address = s.accept()
     print(f"Nouvelle connexion depuis {client_address}")
     threading.Thread(target=handle_client, args=(client_socket,)).start()
+
